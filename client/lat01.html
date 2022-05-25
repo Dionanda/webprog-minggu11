@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Latihan JavaCcript</title>
+</head>
+<body>
+
+    <div id="konten"></div>
+    
+    <script>
+        const jsondt = new XMLHttpRequest()
+        
+        setInterval(function(){
+        jsondt.open("GET","http://localhost/webprog-minggu12/server/lat01.php")
+        jsondt.send()
+        },5000)
+
+
+        jsondt.onload = function(){
+            const mydta = JSON.parse(this.responseText)
+            console.log(mydta)
+
+            let tx = "Daftar Buah-Buahan";
+            tx += "<ul>"
+            for(i=0; i<mydta.length;i++){
+                tx += "<li>"+mydta[i]+"</li>"
+            }
+            tx += "<ul>"
+
+            document.getElementById("konten").innerHTML = tx
+
+        }
+    </script>
+
+</body>
+</html>
